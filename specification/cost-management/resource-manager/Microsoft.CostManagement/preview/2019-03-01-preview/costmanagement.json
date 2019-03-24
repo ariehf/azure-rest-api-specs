@@ -2344,7 +2344,7 @@
         },
         "properties": {
           "x-ms-client-flatten": true,
-          "$ref": "#/definitions/ConnectorProperties",
+          "$ref": "#/definitions/ConnectorPropertiesDOESNTEXIST",
           "description": "Connector properties"
         }
       },
