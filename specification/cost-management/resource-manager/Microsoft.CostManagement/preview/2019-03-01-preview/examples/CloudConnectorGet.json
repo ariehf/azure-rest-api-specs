@@ -11,7 +11,7 @@
         "name": "aws-123456789012",
         "type": "Microsoft.CostManagement/cloudConnectors",
         "properties": {
-          "displayNamZZZZZZZZZZe": "AWS-Consolidated-1",
+          "displayName": "AWS-Consolidated-1",
           "providerBillingAccountId": "123456789012",
           "providerBillingAccountDisplayName": "MyCompany Consolidated",
           "credentialsKey": "arn:aws:iam::123456789012:role/AzureCostManagementRole",
