@@ -2403,7 +2403,7 @@
             "create",
             "update"
           ],
-          "description": "Identifying source report. (For AWS this is a CUR report name, defined with Daily and with Resources)"
+          "description": "Identifying source report (For AWS this is a CUR report name, defined with Daily and with Resources)"
         },
         "createdOn": {
           "format": "date-time",
