@@ -18,7 +18,7 @@
               "deprecationTime": "2019-03-16T09:18:20.8665509Z",
               "creationTime": "2019-01-16T09:18:20.8665509Z",
               "modificationTime": "2019-01-17T09:18:20.8665509Z",
-              "ruleType": "CustomPrice",
+              "ruleType": "CustomPriceDetails",
               "assignedScopes": null,
               "details": {
                 "pricesheet": "Pay-As-You-Go (0003P)",
