@@ -11,8 +11,8 @@
         "ruleType": "CustomPrice",
         "scopes": [
           {
-            "entityType": "Enrollment",
-            "entityId": "292105a9-680d-48cf-bdad-1d023104d69f",
+            "type": "Enrollment",
+            "id": "292105a9-680d-48cf-bdad-1d023104d69f",
             "childScope": null
           }
         ],
