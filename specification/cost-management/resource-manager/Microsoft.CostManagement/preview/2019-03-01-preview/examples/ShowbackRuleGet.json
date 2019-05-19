@@ -18,10 +18,10 @@
           "creationTime": "2019-01-16T09:18:20.8665509Z",
           "modificationTime": "2019-01-17T09:18:20.8665509Z",
           "ruleType": "CustomPrice",
-          "assignedScopes": null,
+          "scopes": null,
           "details": {
             "pricesheet": "Pay-As-You-Go (0003P)",
-            "benefits": true,
+            "benefits": ["None"],
             "markups": null
           }
         }
