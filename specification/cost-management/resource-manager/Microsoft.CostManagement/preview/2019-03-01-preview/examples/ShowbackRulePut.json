@@ -4,8 +4,8 @@
     "billingAccountId": "100",
     "ruleName": "testRule",
     "showbackRule": {
+      "name": "demo",
       "properties": {
-        "name": "demo",
         "description": "Welcome to Showback demo",
         "status": "Active",
         "ruleType": "CustomPrice",
