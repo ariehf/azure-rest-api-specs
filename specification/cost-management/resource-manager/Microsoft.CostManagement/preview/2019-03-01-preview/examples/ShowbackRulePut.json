@@ -21,7 +21,7 @@
           "benefits": ["None"],
           "markups": [
             {
-              "percentage": 1.1,
+              "percentage": "1.1",
               "filters": []
             }
           ]
@@ -49,7 +49,7 @@
             "benefits": ["None"],
             "markups": [
               {
-                "percentage": 1.1,
+                "percentage": "1.1",
                 "filters": []
               }
             ]
