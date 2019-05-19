@@ -2898,7 +2898,7 @@
     },
     "ShowbackRuleProperties": {
       "description": "The properties of a showback rule.",
-      "discriminator": "RuleType",
+      "discriminator": "ruleType",
       "properties": {
         "description": {
           "description": "Description of a showback rule.",
@@ -2989,7 +2989,7 @@
       "type": "object",
       "description": "Describes Showback rule with rule type",
       "properties": {
-        "RuleType": {
+        "ruleType": {
           "type": "string",
           "description": "The rule type of the showback rule solution",
           "enum": [
