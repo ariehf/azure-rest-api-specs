@@ -1146,6 +1146,57 @@
         }
       }
     },
+    "/providers/Microsoft.CostManagement/externalBillingAccounts/{externalBillingAccountName}/Forecast": {
+      "post": {
+        "tags": [
+          "Forecast"
+        ],
+        "operationId": "Forecast_UsageByExternalBillingAccount",
+        "description": "Forecast the usage data for external billing account.",
+        "externalDocs": {
+          "url": "https://docs.microsoft.com/en-us/rest/api/costmanagement/"
+        },
+        "x-ms-examples": {
+          "ExternalBillingAccountForecast": {
+            "$ref": "./examples/ExternalBillingAccountForecast.json"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/parameters/apiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/externalBillingAccountNameParameter"
+          },
+          {
+            "name": "parameters",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ReportConfigDefinition"
+            },
+            "description": "Parameters supplied to the CreateOrUpdate Report Config operation."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK. The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/QueryResult"
+            }
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": null
+        }
+      }
+    },
     "/providers/Microsoft.CostManagement/cloudConnectors": {
       "get": {
         "tags": [
@@ -2403,7 +2454,7 @@
             "create",
             "update"
           ],
-          "description": "Identifying source report (For AWS this is a CUR report name, defined with Daily and with Resources)"
+          "description": "Identifying source report. (For AWS this is a CUR report name, defined with Daily and with Resources)"
         },
         "createdOn": {
           "format": "date-time",
@@ -2894,146 +2945,13 @@
           "format": "date-time",
           "type": "string",
           "readOnly": true
-        }
-      },
-      "allOf": [
-        {
-          "$ref": "#/definitions/ShowbackRulesKind"
-        }
-      ]
-    },
-    "CustomPrice": {
-      "x-ms-discriminator-value": "CustomPrice",
-      "type": "object",
-      "description": "Represents Custom price showback rule model",
-      "allOf": [
-        {
-          "$ref": "#/definitions/ShowbackRuleProperties"
-        }
-      ],
-      "properties": {
-        "details": {
-          "$ref": "#/definitions/CustomPriceProperties"
-        }
-      }
-    },
-    "CustomPriceProperties": {
-      "type": "object",
-      "title": "Custom price showback rule properties",
-      "properties": {
-        "pricesheet": {
-          "type": "string"
         },
-        "benefits": {
-          "description": "Array of benefits.",
-          "type": "array",
-          "items": {
-            "type": "string",
-            "enum": [
-              "None",
-              "All",
-              "AHUB",
-              "Reservations"
-            ],
-            "x-ms-enum": {
-              "name": "FunctionType",
-              "modelAsString": true
+        "details": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/ShowbackDetailsKind"
             }
-          }
-        },
-        "markups": {
-          "description": "List of markups.",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Markup"
-          }
-        }
-      }
-    },
-    "CustomCharge": {
-      "x-ms-discriminator-value": "CustomCharge",
-      "type": "object",
-      "description": "Represents custom charge showback rule model",
-      "allOf": [
-        {
-          "$ref": "#/definitions/ShowbackRuleProperties"
-        }
-      ],
-      "properties": {
-        "details": {
-          "$ref": "#/definitions/CustomChargeProperties"
-        }
-      }
-    },
-    "CustomChargeProperties": {
-      "type": "object",
-      "title": "Custom charge showback rule properties",
-      "properties": {
-        "recurring": {
-          "description": "Recurring of the charge.",
-          "type": "string",
-          "readOnly": true,
-          "enum": [
-            "true",
-            "false"
-          ],
-          "x-ms-enum": {
-            "name": "CustomChargeRecurring",
-            "modelAsString": true
-          }
-        },
-        "chargeType": {
-          "type": "string"
-        },
-        "ChargeValue": {
-          "type": "string"
-        },
-        "EffectiveMonth": {
-          "format": "date-time",
-          "type": "string"
-        },
-        "EndMonth": {
-          "format": "date-time",
-          "type": "string"
-        }
-      }
-    },
-    "CostAllocation": {
-      "x-ms-discriminator-value": "CostAllocation",
-      "type": "object",
-      "description": "Represents cost allocation showback rule model",
-      "allOf": [
-        {
-          "$ref": "#/definitions/ShowbackRuleProperties"
-        }
-      ],
-      "properties": {
-        "details": {
-          "$ref": "#/definitions/CostAllocationProperties"
-        }
-      }
-    },
-    "CostAllocationProperties": {
-      "type": "object",
-      "title": "Cost allocation showback rule properties",
-      "properties": {}
-    },
-    "ShowbackRulesKind": {
-      "type": "object",
-      "description": "Describes Showback rule with rule type",
-      "properties": {
-        "RuleType": {
-          "type": "string",
-          "description": "The rule type of the showback rule solution",
-          "enum": [
-            "CustomPrice",
-            "CustomChange",
-            "CostAllocation"
-          ],
-          "x-ms-enum": {
-            "name": "ShowbackRulesKind",
-            "modelAsString": true
-          }
+          ]
         }
       }
     },
@@ -3066,6 +2984,105 @@
           "type": "string"
         }
       }
+    },
+    "ShowbackDetailsKind": {
+      "type": "object",
+      "description": "Describes Showback rule with rule type",
+      "properties": {
+        "RuleType": {
+          "type": "string",
+          "description": "The rule type of the showback rule solution",
+          "enum": [
+            "CustomPriceDetails",
+            "CostAllocationDetails"
+          ],
+          "x-ms-enum": {
+            "name": "ShowbackDetailsKind",
+            "modelAsString": true,
+            "values": [
+              {
+                "value": "CustomPriceDetails"
+              },
+              {
+                "value": "CostAllocationDetails"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "CustomPriceDetails": {
+      "x-ms-discriminator-value": "CustomPriceDetails",
+      "type": "object",
+      "description": "Represents Custom price showback rule model",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ShowbackDetails"
+        }
+      ],
+      "properties": {
+        "pricesheet": {
+          "type": "string"
+        },
+        "benefits": {
+          "description": "Array of benefits.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "None",
+              "All",
+              "AHUB",
+              "Reservations"
+            ],
+            "x-ms-enum": {
+              "name": "FunctionType",
+              "modelAsString": true
+            }
+          }
+        },
+        "markups": {
+          "description": "List of markups.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Markup"
+          }
+        }
+      }
+    },
+    "CostAllocationDetails": {
+      "x-ms-discriminator-value": "CostAllocationDetails",
+      "type": "object",
+      "description": "Represents Custom price showback rule model",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ShowbackDetails"
+        }
+      ],
+      "properties": {
+        "policy": {
+          "description": "Cost allocation policy.",
+          "type": "string",
+          "enum": [
+            "Proportional",
+            "Evenly",
+            "Fixed"
+          ],
+          "x-ms-enum": {
+            "name": "CostAllocationPolicy",
+            "modelAsString": true
+          }
+        }
+      }
+    },
+    "ShowbackDetails": {
+      "type": "object",
+      "description": "The showback rule details",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ShowbackDetailsKind"
+        }
+      ]
     }
   },
   "parameters": {
