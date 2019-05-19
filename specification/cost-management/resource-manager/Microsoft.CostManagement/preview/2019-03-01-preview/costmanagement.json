@@ -3003,7 +3003,7 @@
       },
       "allOf": [
         {
-          "$ref": "#/definitions/ShowbackDetails"
+          "$ref": "#/definitions/ShowbackRuleProperties"
         }
       ],
       "description": "Represents Custom price showback rule model",
@@ -3051,7 +3051,7 @@
       },
       "allOf": [
         {
-          "$ref": "#/definitions/ShowbackDetails"
+          "$ref": "#/definitions/ShowbackRuleProperties"
         }
       ],
       "description": "Represents Custom price showback rule model",
