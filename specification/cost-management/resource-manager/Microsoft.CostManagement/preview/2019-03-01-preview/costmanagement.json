@@ -2897,6 +2897,9 @@
       }
     },
     "ShowbackRuleProperties": {
+      "required": [
+        "ruleType"
+      ],
       "description": "The properties of a showback rule.",
       "discriminator": "ruleType",
       "properties": {
@@ -2954,16 +2957,9 @@
             "CostAllocation"
           ],
           "x-ms-enum": {
-            "name": "ShowbackDetailsKind",
+            "name": "RuleType",
             "modelAsString": true
           }
-        },
-        "details": {
-          "allOf": [
-            {
-              "$ref": "#/definitions/ShowbackDetailsKind"
-            }
-          ]
         }
       }
     },
@@ -3078,15 +3074,6 @@
           }
         }
       }
-    },
-    "ShowbackDetails": {
-      "type": "object",
-      "description": "The showback rule details",
-      "allOf": [
-        {
-          "$ref": "#/definitions/ShowbackDetailsKind"
-        }
-      ]
     }
   },
   "parameters": {
