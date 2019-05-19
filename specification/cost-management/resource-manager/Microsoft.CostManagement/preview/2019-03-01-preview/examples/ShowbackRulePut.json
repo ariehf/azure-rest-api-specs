@@ -8,7 +8,7 @@
         "name": "demo",
         "description": "Welcome to Showback demo",
         "status": "Active",
-        "ruleType": "CustomPriceDetails",
+        "ruleType": "CustomPrice",
         "assignedScopes": [
           {
             "entityType": "Enrollment",
@@ -42,7 +42,7 @@
           "modificationTime": "2019-01-17T09:18:20.8665509Z",
           "description": "Welcome to Showback demo",
           "status": "NotActive",
-          "ruleType": "CustomPriceDetails",
+          "ruleType": "CustomPrice",
           "details": {
             "pricesheet": "Pay-As-You-Go (0003P)",
             "benefits": true,

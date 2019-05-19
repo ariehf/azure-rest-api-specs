@@ -2946,6 +2946,18 @@
           "type": "string",
           "readOnly": true
         },
+        "ruleType": {
+          "type": "string",
+          "description": "The rule type of the showback rule solution",
+          "enum": [
+            "CustomPrice",
+            "CostAllocation"
+          ],
+          "x-ms-enum": {
+            "name": "ShowbackDetailsKind",
+            "modelAsString": true
+          }
+        },
         "details": {
           "allOf": [
             {
@@ -2985,41 +2997,24 @@
         }
       }
     },
-    "ShowbackDetailsKind": {
-      "type": "object",
-      "description": "Describes Showback rule with rule type",
+    "CustomPriceDetailsKind": {
       "properties": {
-        "ruleType": {
-          "type": "string",
-          "description": "The rule type of the showback rule solution",
-          "enum": [
-            "CustomPriceDetails",
-            "CostAllocationDetails"
-          ],
-          "x-ms-enum": {
-            "name": "ShowbackDetailsKind",
-            "modelAsString": true,
-            "values": [
-              {
-                "value": "CustomPriceDetails"
-              },
-              {
-                "value": "CostAllocationDetails"
-              }
-            ]
-          }
+        "details": {
+          "x-ms-client-flatten": true,
+          "description": "The Custom price properties to validate.",
+          "$ref": "#/definitions/CustomPriceDetails"
         }
-      }
-    },
-    "CustomPriceDetails": {
-      "x-ms-discriminator-value": "CustomPriceDetails",
-      "type": "object",
-      "description": "Represents Custom price showback rule model",
+      },
       "allOf": [
         {
           "$ref": "#/definitions/ShowbackDetails"
         }
       ],
+      "description": "Represents Custom price showback rule model",
+      "x-ms-discriminator-value": "CustomPrice"
+    },
+    "CustomPriceDetails": {
+      "description": "Represents Custom price showback rule model",
       "properties": {
         "pricesheet": {
           "type": "string"
@@ -3050,15 +3045,24 @@
         }
       }
     },
-    "CostAllocationDetails": {
-      "x-ms-discriminator-value": "CostAllocationDetails",
-      "type": "object",
-      "description": "Represents Custom price showback rule model",
+    "CostAllocationDetailsKind": {
+      "properties": {
+        "details": {
+          "x-ms-client-flatten": true,
+          "description": "The Custom price properties to validate.",
+          "$ref": "#/definitions/CostAllocationDetails"
+        }
+      },
       "allOf": [
         {
           "$ref": "#/definitions/ShowbackDetails"
         }
       ],
+      "description": "Represents Custom price showback rule model",
+      "x-ms-discriminator-value": "CostAllocation"
+    },
+    "CostAllocationDetails": {
+      "description": "Represents Custom price showback rule model",
       "properties": {
         "policy": {
           "description": "Cost allocation policy.",
